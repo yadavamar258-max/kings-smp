@@ -1,72 +1,195 @@
-Create an ultra-modern Minecraft server website for "King SMP".
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King SMP</title>
 
-Theme:
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Arial',sans-serif;
+}
 
-- Dark blue and gold color scheme
-- Premium Minecraft style
-- Fully responsive for mobile and PC
-- Smooth animations and transitions
-- Glassmorphism cards
-- Animated particles background
-- Hero banner with glowing text
+body{
+background:linear-gradient(135deg,#0b1020,#16213e);
+color:white;
+overflow-x:hidden;
+}
 
-Server Information:
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
 
-- Server Name: King SMP
-- Owner: Aarav7111
-- Co-Owner: Siddhant
-- Version: 1.21+
-- Gamemode: Lifesteal + Economy SMP
+.hero h1{
+font-size:70px;
+color:gold;
+text-shadow:0 0 20px gold;
+animation: glow 2s infinite alternate;
+}
 
-Sections:
+@keyframes glow{
+from{ text-shadow:0 0 10px gold; }
+to{ text-shadow:0 0 40px gold; }
+}
 
-1. Hero Section
-   
-   - Large animated "KING SMP" title
-   - Subtitle: "The Ultimate Lifesteal & Economy Experience"
-   - Animated Join Discord button
+.hero p{
+font-size:22px;
+margin-top:15px;
+}
 
-2. Features Section
-   
-   - Lifesteal System
-   - Economy System
-   - Custom Kits
-   - Crates
-   - Rank System
-   - Player Shops
-   - Events
-   - 24/7 Server
-   - Animated feature cards
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:15px 30px;
+background:gold;
+color:black;
+text-decoration:none;
+font-weight:bold;
+border-radius:12px;
+transition:0.3s;
+}
 
-3. Staff Section
-   
-   - Owner card for Aarav7111
-   - Co-Owner card for Siddhant
-   - Hover animations
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px gold;
+}
 
-4. Discord Section
-   
-   - Discord Invite: https://discord.gg/DPcmDR3mA
-   - Large animated Discord button
+.section{
+max-width:1100px;
+margin:auto;
+padding:70px 20px;
+}
 
-5. Rules Section
-   
-   - No Hacking
-   - No Exploits
-   - Respect Everyone
-   - Have Fun
+.title{
+text-align:center;
+color:gold;
+margin-bottom:30px;
+font-size:40px;
+}
 
-6. Footer
-   
-   - © King SMP | Owner: Aarav7111
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
 
-Technical Requirements:
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+padding:25px;
+border-radius:18px;
+transition:.3s;
+}
 
-- Generate complete HTML, CSS, and JavaScript
-- Use modern animations
-- Add scroll animations
-- Add glowing effects
-- Add animated background particles
-- Add smooth hover effects
-- Make it look like a top Minecraft server website
-- Ready for GitHub Pages deployment
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 25px gold;
+}
+
+.staff-card{
+text-align:center;
+}
+
+footer{
+background:#0a0f1d;
+padding:25px;
+text-align:center;
+margin-top:50px;
+}
+
+.particle{
+position:fixed;
+width:4px;
+height:4px;
+background:gold;
+border-radius:50%;
+opacity:.7;
+animation:float 10s linear infinite;
+}
+
+@keyframes float{
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-100px);
+}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>👑 KING SMP 👑</h1>
+<p>The Ultimate Lifesteal & Economy Experience</p>
+<a class="btn" href="https://discord.gg/DPcmDR3mA">Join Discord</a>
+</div>
+
+<section class="section">
+<h2 class="title">✨ Features</h2>
+
+<div class="cards">
+<div class="card">❤️ Lifesteal System</div>
+<div class="card">💰 Economy System</div>
+<div class="card">🎁 Custom Kits</div>
+<div class="card">📦 Crates</div>
+<div class="card">🏆 Rank System</div>
+<div class="card">🛒 Player Shops</div>
+<div class="card">🎉 Events</div>
+<div class="card">⚡ 24/7 Server</div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="title">👑 Staff Team</h2>
+
+<div class="cards">
+<div class="card staff-card">
+<h3>Owner</h3>
+<p>Aarav7111</p>
+</div>
+
+<div class="card staff-card">
+<h3>Co-Owner</h3>
+<p>Siddhant</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="title">📜 Rules</h2>
+
+<div class="cards">
+<div class="card">❌ No Hacking</div>
+<div class="card">❌ No Exploits</div>
+<div class="card">✅ Respect Everyone</div>
+<div class="card">✅ Have Fun</div>
+</div>
+</section>
+
+<footer>
+© King SMP | Owner: Aarav7111
+</footer>
+
+<script>
+for(let i=0;i<40;i++){
+let p=document.createElement('div');
+p.classList.add('particle');
+p.style.left=Math.random()*100+'vw';
+p.style.animationDuration=(5+Math.random()*10)+'s';
+document.body.appendChild(p);
+}
+</script>
+
+</body>
+</html>
