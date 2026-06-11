@@ -27,7 +27,7 @@ position:fixed;
 width:100%;
 height:100%;
 background:radial-gradient(circle,#ffd70022,#000);
-animation:move 8s infinite alternate;
+animation:move 10s infinite alternate;
 z-index:-2;
 }
 
@@ -44,7 +44,7 @@ height:100%;
 display:flex;
 justify-content:center;
 align-items:center;
-background:rgba(0,0,0,0.8);
+background:rgba(0,0,0,0.85);
 z-index:9999;
 }
 
@@ -86,6 +86,7 @@ cursor:pointer;
 nav{
 display:flex;
 justify-content:space-between;
+align-items:center;
 padding:15px 25px;
 background:rgba(0,0,0,0.4);
 backdrop-filter:blur(10px);
@@ -118,7 +119,7 @@ text-align:center;
 }
 
 .title{
-font-size:75px;
+font-size:70px;
 color:#ffd700;
 text-shadow:0 0 30px #ffd700;
 animation:glow 2s infinite alternate;
@@ -129,7 +130,50 @@ from{filter:brightness(1);}
 to{filter:brightness(1.4);}
 }
 
-/* 3D SHOP */
+/* SECTIONS */
+section{
+padding:70px 20px;
+max-width:1000px;
+margin:auto;
+}
+
+h2{
+color:#ffd700;
+text-align:center;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:12px;
+text-align:center;
+border:1px solid rgba(255,215,0,0.15);
+}
+
+/* IP */
+.ip-box{
+margin-top:20px;
+background:rgba(255,255,255,0.06);
+padding:15px 20px;
+border-radius:12px;
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+#ip{
+color:#ffd700;
+font-weight:bold;
+}
+
+/* SHOP (ONLY UPGRADED PART) */
 #shop{
 display:none;
 padding:80px 20px;
@@ -138,25 +182,26 @@ padding:80px 20px;
 .shop-warning{
 text-align:center;
 color:#ffcc00;
-margin-bottom:20px;
+margin-bottom:15px;
+font-weight:bold;
 }
 
 .shop-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+gap:15px;
 perspective:1000px;
 }
 
-/* 3D CARD */
-.card{
+/* 3D CARDS */
+.card3d{
 background:rgba(255,255,255,0.06);
 padding:20px;
 border-radius:15px;
 text-align:center;
-border:1px solid rgba(255,215,0,0.2);
-transition:0.5s;
+transition:0.4s;
 transform-style:preserve-3d;
+border:1px solid rgba(255,215,0,0.2);
 animation:float 3s infinite ease-in-out;
 }
 
@@ -166,31 +211,31 @@ animation:float 3s infinite ease-in-out;
 100%{transform:translateY(0);}
 }
 
-.card:hover{
-transform:rotateY(10deg) rotateX(10deg) scale(1.08);
-box-shadow:0 0 30px #ffd70055;
+.card3d:hover{
+transform:rotateY(10deg) rotateX(8deg) scale(1.07);
+box-shadow:0 0 25px #ffd70055;
 border:1px solid #ffd700;
 }
 
-.card button{
+.card3d button{
 margin-top:10px;
 width:100%;
 padding:10px;
 border:none;
 border-radius:8px;
 background:#ffd700;
-cursor:pointer;
 font-weight:bold;
+cursor:pointer;
 }
 
 /* POPUP */
 .popup{
 display:none;
 position:fixed;
-width:100%;
-height:100%;
 top:0;
 left:0;
+width:100%;
+height:100%;
 background:rgba(0,0,0,0.7);
 backdrop-filter:blur(10px);
 justify-content:center;
@@ -211,9 +256,11 @@ border:1px solid #ffd700;
 color:#ffd700;
 }
 
-button{
-cursor:pointer;
-}
+.vip{color:#00d9ff;}
+.elite{color:#7cff00;}
+.legend{color:#ff7b00;}
+.emperor{color:#ff3bd4;}
+.king{color:#ffd700;font-weight:800;}
 </style>
 </head>
 
@@ -221,66 +268,124 @@ cursor:pointer;
 
 <div class="bg"></div>
 
-<!-- AUTH -->
+<!-- LOGIN -->
 <div id="auth">
 <div class="box">
-<h1>👑 King SMP</h1>
-
+<h1>👑 King SMP Login</h1>
 <input id="user" placeholder="Username">
 <input id="pass" type="password" placeholder="Password">
-
-<button onclick="login()">Login / Register</button>
+<button onclick="login()">Login</button>
 </div>
 </div>
 
 <!-- MAIN -->
 <div id="main" style="display:none;">
 
+<!-- NAV -->
 <nav>
 <h1>👑 King SMP</h1>
 <button onclick="toggleShop()">SHOP</button>
 <button onclick="logout()">Logout</button>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-<div class="title">Welcome <span id="name"></span></div>
+<div class="title">King SMP</div>
+
+<div class="ip-box">
+<span id="ip">theking.mcsh.io</span>
+<button onclick="copyIP()">Copy IP</button>
+</div>
+</div>
+
+<!-- FEATURES -->
+<section>
+<h2>🔥 Features</h2>
+<div class="grid">
+<div class="card">❤️ Lifesteal</div>
+<div class="card">💰 Economy</div>
+<div class="card">⚔ PvP</div>
+<div class="card">🌍 Events</div>
+</div>
+</section>
+
+<!-- RANKS -->
+<section>
+<h2>👑 Ranks</h2>
+<div class="grid">
+<div class="card vip">VIP</div>
+<div class="card elite">Elite</div>
+<div class="card legend">Legend</div>
+<div class="card emperor">Emperor</div>
+<div class="card king">KING 👑</div>
+</div>
+</section>
+
+<!-- STAFF -->
+<section>
+<h2>👥 Staff</h2>
+<div class="grid">
+<div class="card">Owner: Aarav7111</div>
+<div class="card">Co-Owner: Siddhant</div>
+</div>
+</section>
+
+<!-- RULES -->
+<section>
+<h2>📜 Rules</h2>
+<div class="card">
+No exploiting • No duping • No hacks • Have fun
+</div>
+</section>
+
+<!-- DISCORD -->
+<section>
+<h2>💬 Discord</h2>
+<div class="card">
+<button onclick="window.open('https://discord.gg/DPcmDR3mA','_blank')">
+Join Discord
+</button>
+</div>
+</section>
+
 </div>
 
 <!-- SHOP -->
 <div id="shop">
 
 <div class="shop-warning">
-⚠ Only in-game Minecraft currency is used (NO real money)
+⚠ No real money. Only in-game Minecraft currency.
 </div>
+
+<h2>🛒 Shop</h2>
 
 <div class="shop-grid">
 
-<div class="card">
-VIP Kit<br>VIP Rank
+<div class="card3d vip">
+VIP Kit + VIP Rank
 <button onclick="openBuy('VIP')">Buy</button>
 </div>
 
-<div class="card">
-Elite Kit<br>Elite Rank
+<div class="card3d elite">
+Elite Kit + Elite Rank
 <button onclick="openBuy('Elite')">Buy</button>
 </div>
 
-<div class="card">
-Legend Kit<br>Legend Rank
+<div class="card3d legend">
+Legend Kit + Legend Rank
 <button onclick="openBuy('Legend')">Buy</button>
 </div>
 
-<div class="card">
-Emperor Kit<br>Emperor Rank
+<div class="card3d emperor">
+Emperor Kit + Emperor Rank
 <button onclick="openBuy('Emperor')">Buy</button>
 </div>
 
-<div class="card">
-KING Kit 👑<br>KING Rank
+<div class="card3d king">
+KING Kit + KING Rank
 <button onclick="openBuy('KING')">Buy</button>
 </div>
 
-</div>
 </div>
 
 </div>
@@ -289,39 +394,28 @@ KING Kit 👑<br>KING Rank
 <div class="popup" id="popup">
 <div class="popup-box">
 <h2 id="rank"></h2>
-
 <p>📩 DM Owner: Owner°Aarav</p>
-<p>⚠ Uses in-game currency only</p>
-
+<p>⚠ Only in-game currency</p>
 <button onclick="closeBuy()">Close</button>
 </div>
 </div>
 
 <script>
 
-/* LOAD ACCOUNT */
-let currentUser = localStorage.getItem("user");
+/* LOGIN SAVE */
+let savedUser = localStorage.getItem("user");
 
-if(currentUser){
+if(savedUser){
 document.getElementById("auth").style.display="none";
 document.getElementById("main").style.display="block";
-document.getElementById("name").innerText=currentUser;
 }
 
 function login(){
 let u=document.getElementById("user").value;
-let p=document.getElementById("pass").value;
-
-if(!u||!p){
-alert("Fill details");
-return;
-}
+if(!u)return;
 
 localStorage.setItem("user",u);
-
-document.getElementById("auth").style.display="none";
-document.getElementById("main").style.display="block";
-document.getElementById("name").innerText=u;
+location.reload();
 }
 
 function logout(){
@@ -331,8 +425,12 @@ location.reload();
 
 function toggleShop(){
 let shop=document.getElementById("shop");
-
 shop.style.display = shop.style.display==="block" ? "none" : "block";
+}
+
+function copyIP(){
+navigator.clipboard.writeText("theking.mcsh.io");
+alert("IP Copied!");
 }
 
 function openBuy(rank){
