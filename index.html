@@ -21,19 +21,35 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* ANIMATED BACKGROUND */
 .bg{
 position:fixed;
 width:100%;
 height:100%;
-background:radial-gradient(circle,#ffd70022,#000);
-animation:move 10s infinite alternate;
+background:radial-gradient(circle at top,#ffd70033,#000);
+animation:bgMove 8s ease-in-out infinite alternate;
 z-index:-2;
 }
 
-@keyframes move{
+@keyframes bgMove{
+0%{transform:scale(1) translate(0,0);}
+100%{transform:scale(1.1) translate(-40px,30px);}
+}
+
+/* FLOAT PARTICLES */
+.glow{
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle,#ffd70011,transparent,transparent);
+animation:floatGlow 10s linear infinite;
+z-index:-1;
+}
+
+@keyframes floatGlow{
 0%{transform:translate(0,0);}
-100%{transform:translate(-60px,40px);}
+50%{transform:translate(-80px,40px);}
+100%{transform:translate(0,0);}
 }
 
 /* LOGIN */
@@ -55,7 +71,13 @@ border-radius:15px;
 width:320px;
 text-align:center;
 border:1px solid #ffd70055;
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
+animation:pop 0.6s ease;
+}
+
+@keyframes pop{
+from{transform:scale(0.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
 }
 
 .box h1{
@@ -63,7 +85,7 @@ color:#ffd700;
 margin-bottom:10px;
 }
 
-.box input{
+input{
 width:100%;
 padding:10px;
 margin:8px 0;
@@ -72,13 +94,7 @@ border-radius:8px;
 outline:none;
 }
 
-.box button{
-width:100%;
-padding:10px;
-border:none;
-border-radius:8px;
-background:#ffd700;
-font-weight:bold;
+button{
 cursor:pointer;
 }
 
@@ -93,10 +109,17 @@ backdrop-filter:blur(10px);
 position:sticky;
 top:0;
 z-index:1000;
+animation:slideDown 0.5s ease;
+}
+
+@keyframes slideDown{
+from{transform:translateY(-50px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
 }
 
 nav h1{
 color:#ffd700;
+text-shadow:0 0 10px #ffd700;
 }
 
 nav button{
@@ -104,7 +127,6 @@ background:#ffd700;
 border:none;
 padding:8px 14px;
 border-radius:8px;
-cursor:pointer;
 font-weight:bold;
 }
 
@@ -116,45 +138,24 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 .title{
-font-size:70px;
+font-size:75px;
 color:#ffd700;
-text-shadow:0 0 30px #ffd700;
+text-shadow:0 0 25px #ffd700;
 animation:glow 2s infinite alternate;
 }
 
 @keyframes glow{
 from{filter:brightness(1);}
-to{filter:brightness(1.4);}
-}
-
-/* SECTIONS */
-section{
-padding:70px 20px;
-max-width:1000px;
-margin:auto;
-}
-
-h2{
-color:#ffd700;
-text-align:center;
-margin-bottom:20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:12px;
-text-align:center;
-border:1px solid rgba(255,215,0,0.15);
+to{filter:brightness(1.5);}
 }
 
 /* IP */
@@ -166,6 +167,7 @@ border-radius:12px;
 display:flex;
 gap:10px;
 align-items:center;
+animation:fadeIn 1.2s ease;
 }
 
 #ip{
@@ -173,10 +175,55 @@ color:#ffd700;
 font-weight:bold;
 }
 
-/* SHOP (ONLY UPGRADED PART) */
+/* SECTIONS */
+section{
+padding:70px 20px;
+max-width:1000px;
+margin:auto;
+animation:fadeIn 1s ease;
+}
+
+h2{
+color:#ffd700;
+text-align:center;
+margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+/* CARDS */
+.card{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:12px;
+text-align:center;
+border:1px solid rgba(255,215,0,0.15);
+transition:0.3s;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-6px);}
+100%{transform:translateY(0);}
+}
+
+.card:hover{
+transform:scale(1.07);
+box-shadow:0 0 20px #ffd70055;
+border:1px solid #ffd700;
+}
+
+/* SHOP */
 #shop{
 display:none;
 padding:80px 20px;
+animation:fadeIn 0.6s ease;
 }
 
 .shop-warning{
@@ -186,38 +233,25 @@ margin-bottom:15px;
 font-weight:bold;
 }
 
-.shop-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-perspective:1000px;
-}
-
-/* 3D CARDS */
-.card3d{
+/* SHOP CARD 3D */
+.shop-card{
 background:rgba(255,255,255,0.06);
 padding:20px;
 border-radius:15px;
 text-align:center;
+border:1px solid rgba(255,215,0,0.2);
 transition:0.4s;
 transform-style:preserve-3d;
-border:1px solid rgba(255,215,0,0.2);
-animation:float 3s infinite ease-in-out;
+animation:float 3s ease-in-out infinite;
 }
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-6px);}
-100%{transform:translateY(0);}
-}
-
-.card3d:hover{
-transform:rotateY(10deg) rotateX(8deg) scale(1.07);
+.shop-card:hover{
+transform:rotateY(12deg) rotateX(8deg) scale(1.08);
 box-shadow:0 0 25px #ffd70055;
 border:1px solid #ffd700;
 }
 
-.card3d button{
+.shop-card button{
 margin-top:10px;
 width:100%;
 padding:10px;
@@ -225,22 +259,22 @@ border:none;
 border-radius:8px;
 background:#ffd700;
 font-weight:bold;
-cursor:pointer;
 }
 
 /* POPUP */
 .popup{
 display:none;
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
+top:0;
+left:0;
 background:rgba(0,0,0,0.7);
 backdrop-filter:blur(10px);
 justify-content:center;
 align-items:center;
 z-index:2000;
+animation:fadeIn 0.3s ease;
 }
 
 .popup-box{
@@ -256,6 +290,7 @@ border:1px solid #ffd700;
 color:#ffd700;
 }
 
+/* COLORS */
 .vip{color:#00d9ff;}
 .elite{color:#7cff00;}
 .legend{color:#ff7b00;}
@@ -267,13 +302,14 @@ color:#ffd700;
 <body>
 
 <div class="bg"></div>
+<div class="glow"></div>
 
 <!-- LOGIN -->
 <div id="auth">
 <div class="box">
 <h1>👑 King SMP Login</h1>
 <input id="user" placeholder="Username">
-<input id="pass" type="password" placeholder="Password">
+<input type="password" placeholder="Password">
 <button onclick="login()">Login</button>
 </div>
 </div>
@@ -281,14 +317,12 @@ color:#ffd700;
 <!-- MAIN -->
 <div id="main" style="display:none;">
 
-<!-- NAV -->
 <nav>
 <h1>👑 King SMP</h1>
 <button onclick="toggleShop()">SHOP</button>
 <button onclick="logout()">Logout</button>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
 <div class="title">King SMP</div>
 
@@ -298,7 +332,6 @@ color:#ffd700;
 </div>
 </div>
 
-<!-- FEATURES -->
 <section>
 <h2>🔥 Features</h2>
 <div class="grid">
@@ -309,7 +342,6 @@ color:#ffd700;
 </div>
 </section>
 
-<!-- RANKS -->
 <section>
 <h2>👑 Ranks</h2>
 <div class="grid">
@@ -321,7 +353,6 @@ color:#ffd700;
 </div>
 </section>
 
-<!-- STAFF -->
 <section>
 <h2>👥 Staff</h2>
 <div class="grid">
@@ -330,7 +361,6 @@ color:#ffd700;
 </div>
 </section>
 
-<!-- RULES -->
 <section>
 <h2>📜 Rules</h2>
 <div class="card">
@@ -338,7 +368,6 @@ No exploiting • No duping • No hacks • Have fun
 </div>
 </section>
 
-<!-- DISCORD -->
 <section>
 <h2>💬 Discord</h2>
 <div class="card">
@@ -359,32 +388,13 @@ Join Discord
 
 <h2>🛒 Shop</h2>
 
-<div class="shop-grid">
+<div class="grid">
 
-<div class="card3d vip">
-VIP Kit + VIP Rank
-<button onclick="openBuy('VIP')">Buy</button>
-</div>
-
-<div class="card3d elite">
-Elite Kit + Elite Rank
-<button onclick="openBuy('Elite')">Buy</button>
-</div>
-
-<div class="card3d legend">
-Legend Kit + Legend Rank
-<button onclick="openBuy('Legend')">Buy</button>
-</div>
-
-<div class="card3d emperor">
-Emperor Kit + Emperor Rank
-<button onclick="openBuy('Emperor')">Buy</button>
-</div>
-
-<div class="card3d king">
-KING Kit + KING Rank
-<button onclick="openBuy('KING')">Buy</button>
-</div>
+<div class="shop-card vip">VIP Kit<button onclick="openBuy('VIP')">Buy</button></div>
+<div class="shop-card elite">Elite Kit<button onclick="openBuy('Elite')">Buy</button></div>
+<div class="shop-card legend">Legend Kit<button onclick="openBuy('Legend')">Buy</button></div>
+<div class="shop-card emperor">Emperor Kit<button onclick="openBuy('Emperor')">Buy</button></div>
+<div class="shop-card king">KING Kit 👑<button onclick="openBuy('KING')">Buy</button></div>
 
 </div>
 
@@ -402,25 +412,23 @@ KING Kit + KING Rank
 
 <script>
 
-/* LOGIN SAVE */
-let savedUser = localStorage.getItem("user");
-
-if(savedUser){
-document.getElementById("auth").style.display="none";
-document.getElementById("main").style.display="block";
-}
-
 function login(){
 let u=document.getElementById("user").value;
 if(!u)return;
 
 localStorage.setItem("user",u);
-location.reload();
+document.getElementById("auth").style.display="none";
+document.getElementById("main").style.display="block";
 }
 
 function logout(){
 localStorage.removeItem("user");
 location.reload();
+}
+
+if(localStorage.getItem("user")){
+document.getElementById("auth").style.display="none";
+document.getElementById("main").style.display="block";
 }
 
 function toggleShop(){
