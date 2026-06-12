@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>King SMP</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
+<title>King SMP</title><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet"><style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Montserrat;
+font-family:Montserrat,sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
@@ -21,318 +17,219 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ANIMATED BACKGROUND */
+/* Animated background */
 .bg{
 position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
-background:radial-gradient(circle at top,#ffd70033,#000);
-animation:bgMove 8s ease-in-out infinite alternate;
+background:
+radial-gradient(circle at 20% 20%, rgba(255,215,0,.15), transparent 40%),
+radial-gradient(circle at 80% 30%, rgba(255,215,0,.10), transparent 35%),
+radial-gradient(circle at 50% 80%, rgba(255,215,0,.10), transparent 35%);
+animation:bgMove 10s ease-in-out infinite alternate;
 z-index:-2;
 }
 
 @keyframes bgMove{
-0%{transform:scale(1) translate(0,0);}
-100%{transform:scale(1.1) translate(-40px,30px);}
+from{transform:scale(1);}
+to{transform:scale(1.08);}
 }
 
-/* FLOAT PARTICLES */
-.glow{
-position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(circle,#ffd70011,transparent,transparent);
-animation:floatGlow 10s linear infinite;
-z-index:-1;
-}
-
-@keyframes floatGlow{
-0%{transform:translate(0,0);}
-50%{transform:translate(-80px,40px);}
-100%{transform:translate(0,0);}
-}
-
-/* LOGIN */
-#auth{
-position:fixed;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-background:rgba(0,0,0,0.85);
-z-index:9999;
-}
-
-.box{
-background:rgba(255,255,255,0.06);
-padding:25px;
-border-radius:15px;
-width:320px;
-text-align:center;
-border:1px solid #ffd70055;
-backdrop-filter:blur(12px);
-animation:pop 0.6s ease;
-}
-
-@keyframes pop{
-from{transform:scale(0.8);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-.box h1{
-color:#ffd700;
-margin-bottom:10px;
-}
-
-input{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:none;
-border-radius:8px;
-outline:none;
-}
-
-button{
-cursor:pointer;
-}
-
-/* NAV */
+/* Navbar */
 nav{
+position:sticky;
+top:0;
+z-index:100;
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:15px 25px;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,.55);
 backdrop-filter:blur(10px);
-position:sticky;
-top:0;
-z-index:1000;
-animation:slideDown 0.5s ease;
 }
 
-@keyframes slideDown{
-from{transform:translateY(-50px);opacity:0;}
-to{transform:translateY(0);opacity:1;}
-}
-
-nav h1{
+.logo{
+font-size:28px;
+font-weight:800;
 color:#ffd700;
-text-shadow:0 0 10px #ffd700;
 }
 
-nav button{
+.nav-btn{
 background:#ffd700;
 border:none;
-padding:8px 14px;
-border-radius:8px;
-font-weight:bold;
+padding:10px 16px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
 }
 
-/* HERO */
+/* Hero */
 .hero{
-height:90vh;
+min-height:90vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-animation:fadeIn 1s ease;
+padding:20px;
 }
 
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-.title{
-font-size:75px;
+.hero h1{
+font-size:70px;
 color:#ffd700;
-text-shadow:0 0 25px #ffd700;
-animation:glow 2s infinite alternate;
+text-shadow:0 0 20px #ffd700;
 }
 
-@keyframes glow{
-from{filter:brightness(1);}
-to{filter:brightness(1.5);}
+.hero p{
+margin-top:10px;
+font-size:18px;
 }
 
-/* IP */
 .ip-box{
-margin-top:20px;
-background:rgba(255,255,255,0.06);
+margin-top:25px;
+background:rgba(255,255,255,.06);
 padding:15px 20px;
-border-radius:12px;
+border-radius:14px;
 display:flex;
 gap:10px;
 align-items:center;
-animation:fadeIn 1.2s ease;
+flex-wrap:wrap;
+justify-content:center;
 }
 
-#ip{
+.ip{
 color:#ffd700;
-font-weight:bold;
+font-weight:800;
 }
 
-/* SECTIONS */
+.copy-btn{
+background:#ffd700;
+border:none;
+padding:10px 14px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* Sections */
 section{
-padding:70px 20px;
-max-width:1000px;
+max-width:1100px;
 margin:auto;
-animation:fadeIn 1s ease;
+padding:70px 20px;
 }
 
 h2{
-color:#ffd700;
 text-align:center;
-margin-bottom:20px;
+color:#ffd700;
+margin-bottom:25px;
 }
 
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:15px;
 }
 
-/* CARDS */
 .card{
-background:rgba(255,255,255,0.05);
+background:rgba(255,255,255,.05);
 padding:20px;
-border-radius:12px;
+border-radius:14px;
+border:1px solid rgba(255,215,0,.2);
+transition:.25s;
 text-align:center;
-border:1px solid rgba(255,215,0,0.15);
-transition:0.3s;
-animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-6px);}
-100%{transform:translateY(0);}
 }
 
 .card:hover{
-transform:scale(1.07);
-box-shadow:0 0 20px #ffd70055;
-border:1px solid #ffd700;
+transform:translateY(-5px);
+box-shadow:0 0 20px rgba(255,215,0,.25);
 }
 
-/* SHOP */
-#shop{
-display:none;
-padding:80px 20px;
-animation:fadeIn 0.6s ease;
-}
-
-.shop-warning{
-text-align:center;
-color:#ffcc00;
-margin-bottom:15px;
-font-weight:bold;
-}
-
-/* SHOP CARD 3D */
+/* Shop */
 .shop-card{
-background:rgba(255,255,255,0.06);
+background:rgba(255,255,255,.06);
 padding:20px;
-border-radius:15px;
+border-radius:14px;
+border:1px solid rgba(255,215,0,.2);
 text-align:center;
-border:1px solid rgba(255,215,0,0.2);
-transition:0.4s;
-transform-style:preserve-3d;
-animation:float 3s ease-in-out infinite;
 }
 
-.shop-card:hover{
-transform:rotateY(12deg) rotateX(8deg) scale(1.08);
-box-shadow:0 0 25px #ffd70055;
-border:1px solid #ffd700;
-}
-
-.shop-card button{
-margin-top:10px;
+.buy-btn{
+margin-top:12px;
 width:100%;
 padding:10px;
 border:none;
-border-radius:8px;
+border-radius:10px;
 background:#ffd700;
-font-weight:bold;
+font-weight:700;
+cursor:pointer;
 }
 
-/* POPUP */
+/* Discord button */
+.discord-btn{
+display:inline-block;
+background:#ffd700;
+color:black;
+padding:12px 20px;
+border-radius:10px;
+font-weight:700;
+text-decoration:none;
+}
+
+/* Popup */
 .popup{
 display:none;
 position:fixed;
-width:100%;
-height:100%;
 top:0;
 left:0;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
+width:100%;
+height:100%;
+background:rgba(0,0,0,.75);
 justify-content:center;
 align-items:center;
-z-index:2000;
-animation:fadeIn 0.3s ease;
+z-index:9999;
 }
 
-.popup-box{
+.popup-content{
+width:320px;
 background:#111827;
 padding:25px;
-border-radius:12px;
-width:300px;
+border-radius:14px;
 text-align:center;
 border:1px solid #ffd700;
 }
 
-.popup-box h2{
+.popup-content h3{
 color:#ffd700;
+margin-bottom:10px;
 }
 
-/* COLORS */
-.vip{color:#00d9ff;}
-.elite{color:#7cff00;}
-.legend{color:#ff7b00;}
-.emperor{color:#ff3bd4;}
-.king{color:#ffd700;font-weight:800;}
-</style>
-</head>
+.close-btn{
+margin-top:15px;
+background:#ffd700;
+border:none;
+padding:10px 16px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+}
 
-<body>
-
-<div class="bg"></div>
-<div class="glow"></div>
-
-<!-- LOGIN -->
-<div id="auth">
-<div class="box">
-<h1>👑 King SMP Login</h1>
-<input id="user" placeholder="Username">
-<input type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
-</div>
-
-<!-- MAIN -->
-<div id="main" style="display:none;">
-
-<nav>
+footer{
+text-align:center;
+padding:30px;
+color:#aaa;
+}
+</style></head><body><div class="bg"></div><nav>
+<div class="logo">👑 KS</div>
+<button class="nav-btn" onclick="document.getElementById('shop').scrollIntoView()">🛒 Shop</button>
+</nav><section class="hero">
 <h1>👑 King SMP</h1>
-<button onclick="toggleShop()">SHOP</button>
-<button onclick="logout()">Logout</button>
-</nav>
-
-<div class="hero">
-<div class="title">King SMP</div>
-
-<div class="ip-box">
-<span id="ip">theking.mcsh.io</span>
-<button onclick="copyIP()">Copy IP</button>
+<p>The Ultimate Lifesteal Adventure</p><div class="ip-box">
+<span class="ip">theking.mcsh.io</span>
+<button class="copy-btn" onclick="copyIP()">Copy IP</button>
 </div>
-</div>
-
-<section>
+</section><section>
 <h2>🔥 Features</h2>
 <div class="grid">
 <div class="card">❤️ Lifesteal</div>
@@ -340,117 +237,89 @@ color:#ffd700;
 <div class="card">⚔ PvP</div>
 <div class="card">🌍 Events</div>
 </div>
-</section>
-
-<section>
+</section><section>
 <h2>👑 Ranks</h2>
 <div class="grid">
-<div class="card vip">VIP</div>
-<div class="card elite">Elite</div>
-<div class="card legend">Legend</div>
-<div class="card emperor">Emperor</div>
-<div class="card king">KING 👑</div>
+<div class="card">VIP</div>
+<div class="card">Elite</div>
+<div class="card">Legend</div>
+<div class="card">Emperor</div>
+<div class="card">KING 👑</div>
 </div>
-</section>
-
-<section>
+</section><section>
+<h2>📦 Kits</h2>
+<div class="grid">
+<div class="card">VIP Kit</div>
+<div class="card">Elite Kit</div>
+<div class="card">Legend Kit</div>
+<div class="card">Emperor Kit</div>
+<div class="card">KING Kit 👑</div>
+</div>
+</section><section>
 <h2>👥 Staff</h2>
 <div class="grid">
 <div class="card">Owner: Aarav7111</div>
 <div class="card">Co-Owner: Siddhant</div>
 </div>
-</section>
-
-<section>
+</section><section>
 <h2>📜 Rules</h2>
 <div class="card">
-No exploiting • No duping • No hacks • Have fun
+No exploiting<br>
+No duping<br>
+No hacks<br>
+Have fun<br><br>
+Enjoy your adventure with The King SMP.
 </div>
-</section>
-
-<section>
+</section><section>
 <h2>💬 Discord</h2>
-<div class="card">
-<button onclick="window.open('https://discord.gg/DPcmDR3mA','_blank')">
+<div style="text-align:center;">
+<a class="discord-btn" href="https://discord.gg/DPcmDR3mA" target="_blank">
 Join Discord
-</button>
+</a>
 </div>
-</section>
+</section><section id="shop">
+<h2>🛒 Shop</h2><div class="grid"><div class="shop-card">
+<h3>VIP Rank + VIP Kit</h3>
+<button class="buy-btn" onclick="buy('VIP')">Buy</button>
+</div><div class="shop-card">
+<h3>Elite Rank + Elite Kit</h3>
+<button class="buy-btn" onclick="buy('Elite')">Buy</button>
+</div><div class="shop-card">
+<h3>Legend Rank + Legend Kit</h3>
+<button class="buy-btn" onclick="buy('Legend')">Buy</button>
+</div><div class="shop-card">
+<h3>Emperor Rank + Emperor Kit</h3>
+<button class="buy-btn" onclick="buy('Emperor')">Buy</button>
+</div><div class="shop-card">
+<h3>KING Rank + KING Kit 👑</h3>
+<button class="buy-btn" onclick="buy('KING')">Buy</button>
+</div></div>
+</section><footer>
+Regards,<br>
+Owner: Aarav7111
+</footer><div class="popup" id="popup">
+<div class="popup-content">
+<h3 id="popupRank">Rank</h3><p>
+📩 DM Owner°Aarav on Discord
+</p><br><p>
+This purchase uses only your in-game currency.<br>
+No real money is required.
+</p><button class="close-btn" onclick="closePopup()">Close</button>
 
 </div>
-
-<!-- SHOP -->
-<div id="shop">
-
-<div class="shop-warning">
-⚠ No real money. Only in-game Minecraft currency.
-</div>
-
-<h2>🛒 Shop</h2>
-
-<div class="grid">
-
-<div class="shop-card vip">VIP Kit<button onclick="openBuy('VIP')">Buy</button></div>
-<div class="shop-card elite">Elite Kit<button onclick="openBuy('Elite')">Buy</button></div>
-<div class="shop-card legend">Legend Kit<button onclick="openBuy('Legend')">Buy</button></div>
-<div class="shop-card emperor">Emperor Kit<button onclick="openBuy('Emperor')">Buy</button></div>
-<div class="shop-card king">KING Kit 👑<button onclick="openBuy('KING')">Buy</button></div>
-
-</div>
-
-</div>
-
-<!-- POPUP -->
-<div class="popup" id="popup">
-<div class="popup-box">
-<h2 id="rank"></h2>
-<p>📩 DM Owner: Owner°Aarav</p>
-<p>⚠ Only in-game currency</p>
-<button onclick="closeBuy()">Close</button>
-</div>
-</div>
-
-<script>
-
-function login(){
-let u=document.getElementById("user").value;
-if(!u)return;
-
-localStorage.setItem("user",u);
-document.getElementById("auth").style.display="none";
-document.getElementById("main").style.display="block";
-}
-
-function logout(){
-localStorage.removeItem("user");
-location.reload();
-}
-
-if(localStorage.getItem("user")){
-document.getElementById("auth").style.display="none";
-document.getElementById("main").style.display="block";
-}
-
-function toggleShop(){
-let shop=document.getElementById("shop");
-shop.style.display = shop.style.display==="block" ? "none" : "block";
-}
-
+</div><script>
 function copyIP(){
 navigator.clipboard.writeText("theking.mcsh.io");
 alert("IP Copied!");
 }
 
-function openBuy(rank){
-document.getElementById("popup").style.display="flex";
-document.getElementById("rank").innerText=rank+" Package";
+function buy(rank){
+document.getElementById("popupRank").innerText = rank + " Package";
+document.getElementById("popup").style.display = "flex";
 }
 
-function closeBuy(){
-document.getElementById("popup").style.display="none";
+function closePopup(){
+document.getElementById("popup").style.display = "none";
 }
-
-</script>
-
-</body>
+</script></body>
 </html>
